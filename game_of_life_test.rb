@@ -49,5 +49,14 @@ class GameOfLifeTest < Test::Unit::TestCase
     after = @game.evolve
     assert_equal after, [[1,1,1],[1,1,1],[1,1,1]]
   end
+  
+  def test_number_of_neighbors
+    assert_equal @game.send(:cell_survives?, 1, 2), true
+    assert_equal @game.send(:cell_survives?, 1, 3), true
+    assert_equal @game.send(:cell_survives?, 0, 3), true
+    assert_equal @game.send(:cell_survives?, 1, 1), false
+    assert_equal @game.send(:cell_survives?, 1, 4), false
+    assert_equal @game.send(:cell_survives?, 0, 2), false
+  end
 
 end
